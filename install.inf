@@ -1,0 +1,11 @@
+[info]
+title=Extended double-click selection
+desc=Extend double/triple-click selection while holding Shift 
+type=cudatext-plugin
+subdir=cuda_extended_selection
+homepage=https://github.com/halfbrained/cuda_extended_selection
+
+[item1]
+section=events
+events=on_click_dbl,on_caret
+
