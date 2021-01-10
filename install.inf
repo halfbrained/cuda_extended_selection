@@ -3,7 +3,7 @@ title=Extended double-click selection
 desc=Extend double/triple-click selection while holding Shift 
 type=cudatext-plugin
 subdir=cuda_extended_selection
-homepage=(Fill the GitHub repo URL)
+homepage=https://github.com/halfbrained/cuda_extended_selection
 
 [item1]
 section=events
