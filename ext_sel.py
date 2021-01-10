@@ -170,41 +170,43 @@ class Command:
         
     def load_config(self):
       global OPEN_CHARS, CLOSE_CHARS, STOP_EXT, INCLUDE_CHARS
-      
+
       # store initial prefs, restore on exception
       open_chars, close_chars, stop_ext, include_chars = OPEN_CHARS, CLOSE_CHARS, STOP_EXT, INCLUDE_CHARS
       OPEN_CHARS, CLOSE_CHARS, STOP_EXT, INCLUDE_CHARS = {},{},{},{}
-      
+
       try:
-        if os.path.isfile(fn_config):
-          with open(fn_config, 'r') as f:
-            j = json.load(f)
-          
-            # default
-            jd = j['default']
-            OPEN_CHARS    = {'default':jd['open_chars'] }
-            CLOSE_CHARS   = {'default':jd['close_chars'] }
-            INCLUDE_CHARS = {'default':jd['include_chars'] }
-            STOP_EXT      = {'default':jd['stop_ext'] }
-          
-            # lexers
-            for key,val in j.items():
-              if key[0] == '_' or key == 'default': 
+        if not os.path.isfile(fn_config):
+          print('Extended double-click selection: Missing config file. Creating a default one.')
+          with open(fn_config, 'w') as f:
+            f.write(_config_json)
+
+        with open(fn_config, 'r') as f:
+          j = json.load(f)
+
+          # default
+          jd = j['default']
+          OPEN_CHARS    = {'default':jd['open_chars'] }
+          CLOSE_CHARS   = {'default':jd['close_chars'] }
+          INCLUDE_CHARS = {'default':jd['include_chars'] }
+          STOP_EXT      = {'default':jd['stop_ext'] }
+
+          # lexers
+          for key,val in j.items():
+            if key[0] == '_' or key == 'default': 
+              continue
+
+            for lex in key.split(','):
+              if not lex:
                 continue
-              
-              for lex in key.split(','):
-                if not lex:
-                  continue
-                
-                OPEN_CHARS[lex]     = val.get('open_chars', OPEN_CHARS['default']) 
-                CLOSE_CHARS[lex]    = val.get('close_chars', CLOSE_CHARS['default']) 
-                INCLUDE_CHARS[lex]  = val.get('include_chars', INCLUDE_CHARS['default']) 
-                STOP_EXT[lex]       = val.get('stop_ext', STOP_EXT['default']) 
-                
+
+              OPEN_CHARS[lex]     = val.get('open_chars', OPEN_CHARS['default']) 
+              CLOSE_CHARS[lex]    = val.get('close_chars', CLOSE_CHARS['default']) 
+              INCLUDE_CHARS[lex]  = val.get('include_chars', INCLUDE_CHARS['default']) 
+              STOP_EXT[lex]       = val.get('stop_ext', STOP_EXT['default']) 
+
       except Exception as e:
         OPEN_CHARS, CLOSE_CHARS, STOP_EXT, INCLUDE_CHARS = open_chars, close_chars, stop_ext, include_chars
-        
-        print('Extended Mouse Selection: Failed to load config, using defaults')
-        print(e) # 'raise' here is not printed
-      
 
+        print('Extended Mouse Selection: Failed to load config, using defaults')
+        print(f' - Error:{type(e)}: {e}') # 'raise' here is not printed
