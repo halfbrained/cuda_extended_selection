@@ -70,7 +70,7 @@ class Command:
       
     def calc_selections(self):
       lex = ed.get_prop(PROP_LEXER_CARET) 
-      comment_str = lexer_proc(LEXER_GET_PROP, lex)["c_line"]  
+      comment_str = lexer_proc(LEXER_GET_PROP, lex)["c_line"]  if lex else  ''
          
       include_chars = INCLUDE_CHARS.get(lex, INCLUDE_CHARS['default']) 
       incl_pattern = f'^[\w'+include_chars+']*'
@@ -85,7 +85,8 @@ class Command:
 
       r = 0
       textr = ed.get_text_substr(caret_x, caret_y, caret_x+255, caret_y)
-      textr = textr.split(comment_str, 1)[0]  # stop selection at comment string
+      if comment_str:
+        textr = textr.split(comment_str, 1)[0]  # stop selection at comment string
       rmatch = re.search(incl_pattern, textr)
       if rmatch:
         r = rmatch.end()
