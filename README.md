@@ -2,7 +2,8 @@
 A plugin to streamline the introduction of copy-paste bugs.  
 Adds to usual double-click selection:  
 * Shift+Double-click: includes additional characters to selection
-* Shift+Triple-click: "expression selection" (useful for selecting function call with arguments)
+* Shift+Triple-click: "expression selection" (useful for selecting function call with arguments)  
+![demo](/readme/selection_example.png)
         
 ## Configuration
 Plugin has options in the config file, call menu item  
