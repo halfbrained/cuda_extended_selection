@@ -1,0 +1,6 @@
+2021.01.11
++ add: added plugin command + menu item in "Plugins/ Extend Selection"
++ add: refactored code
+
+2020.11.28
++ initial version
