@@ -1,5 +1,5 @@
 [info]
-title=Extended double-click selection
+title=Extended Selection
 desc=Extend double/triple-click selection while holding Shift 
 type=cudatext-plugin
 subdir=cuda_extended_selection
