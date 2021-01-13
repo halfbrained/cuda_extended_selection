@@ -14,3 +14,10 @@ events=on_click_dbl,on_caret
 section=commands
 caption=Extended Selection\Toggle Selection
 method=menu_entry
+
+
+[item100]
+section=commands
+caption=Extended Selection\Config
+method=config
+menu=o
