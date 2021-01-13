@@ -10,6 +10,7 @@ Plugin has options in the config file, call menu item
 "Options / Settings-pligins / Extended Selection":  
 * "include_chars": additional characters to include in Shift+double-click selection
 * "stop_ext": characters to stop Shift+triple-click selection when not enclosed in ()[]{}<>
+* "open_chars" and "close_chars": map of opening-to-closing and closing-to-opening brackets. Used to limit selection extension to stay within brackets. And to ignore "stop_ext" characters inside brackets, when they follow selected text. 
 
 For example when `cc` clicked in following line:  
     `aa = bb.cc<dd>(ee=ff) = ww`
