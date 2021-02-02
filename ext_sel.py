@@ -73,7 +73,7 @@ class Command:
       comment_str = lexer_proc(LEXER_GET_PROP, lex)["c_line"]  if lex else  ''
          
       include_chars = INCLUDE_CHARS.get(lex, INCLUDE_CHARS['default']) 
-      incl_pattern = f'^[\w'+include_chars+']*'
+      incl_pattern = '^[\w'+include_chars+']*'
       
       caret_x, caret_y = ed.get_carets()[0][:2]
       
@@ -210,4 +210,4 @@ class Command:
         OPEN_CHARS, CLOSE_CHARS, STOP_EXT, INCLUDE_CHARS = open_chars, close_chars, stop_ext, include_chars
 
         print('Extended Mouse Selection: Failed to load config, using defaults')
-        print(f' - Error:{type(e)}: {e}') # 'raise' here is not printed
+        print(' - Error:{0}: {1}'.format(type(e), e)) # 'raise' here is not printed
