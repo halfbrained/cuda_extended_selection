@@ -5,6 +5,9 @@ import json
 
 from cudatext import *
 
+from cudax_lib import get_translation
+_   = get_translation(__file__)  # I18N
+
 fn_config = os.path.join(app_path(APP_DIR_SETTINGS), 'cuda_extended_selection.json')
 
 click_time = 0.3 # sec
@@ -178,7 +181,7 @@ class Command:
 
       try:
         if not os.path.isfile(fn_config):
-          print('Extended double-click selection: Missing config file. Creating a default one.')
+          print(_('Extended double-click selection: Missing config file. Creating a default one.'))
           with open(fn_config, 'w') as f:
             f.write(_config_json)
 
@@ -209,5 +212,5 @@ class Command:
       except Exception as e:
         OPEN_CHARS, CLOSE_CHARS, STOP_EXT, INCLUDE_CHARS = open_chars, close_chars, stop_ext, include_chars
 
-        print('Extended Mouse Selection: Failed to load config, using defaults')
-        print(' - Error:{0}: {1}'.format(type(e), e)) # 'raise' here is not printed
+        print(_('Extended Mouse Selection: Failed to load config, using defaults'))
+        print(_(' - Error:{}: ').format(type(e))) # 'raise' here is not printed
