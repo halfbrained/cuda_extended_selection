@@ -181,7 +181,7 @@ class Command:
 
       try:
         if not os.path.isfile(fn_config):
-          print(_('Extended double-click selection: Missing config file. Creating a default one.'))
+          print(_('Extended selection: Missing config file. Creating a default one.'))
           with open(fn_config, 'w') as f:
             f.write(_config_json)
 
@@ -212,5 +212,5 @@ class Command:
       except Exception as e:
         OPEN_CHARS, CLOSE_CHARS, STOP_EXT, INCLUDE_CHARS = open_chars, close_chars, stop_ext, include_chars
 
-        print(_('Extended Mouse Selection: Failed to load config, using defaults'))
+        print(_('Extended selection: Failed to load config, using defaults'))
         print(_(' - Error:{}: ').format(type(e))) # 'raise' here is not printed
